@@ -1,0 +1,47 @@
+---
+base_dir: yamlData/model
+log_level: INFO
+data:
+  batch_size: 23
+  dataset_dir: data/PEMS-BAY
+  test_batch_size: 23
+  val_batch_size: 23
+  graph_pkl_filename: yamlData/sensor_graph/covid_adj_mx.pkl
+
+model:
+  cl_decay_steps: 2000
+  filter_type: dual_random_walk
+  horizon: 12
+  input_dim: 5
+  l1_decay: 0
+  max_diffusion_step: 1
+  num_nodes: 50
+  num_rnn_layers: 1
+  output_dim: 1
+  rnn_units: 8
+  seq_len: 12
+  use_curriculum_learning: false
+  graph_pkl_filename: yamlData/sensor_graph/covid_adj_mx.pkl
+
+train:
+  base_lr: 0.01
+  dropout: 0
+  epoch: 0
+  epochs: 1
+  epsilon: 1.0e-3
+  global_step: 0
+  lr_decay_ratio: 0.1
+  max_grad_norm: 5
+  max_to_keep: 100
+  min_learning_rate: 2.0e-06
+  optimizer: adam
+  patience: 50
+  steps: [20, 30, 40, 50]
+  test_every_n_epochs: 10000
+  mode: local
+  h5: data/covid_data.npy
+  h5key: speed
+  load_path: auto
+  impl: dask-index
+  npar: 1
+  entries: 60000
